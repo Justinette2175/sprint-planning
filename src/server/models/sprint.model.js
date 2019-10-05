@@ -1,8 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 const SprintSchema = new Schema({
-  name: { type: String, required: true, max: 100 },
-  price: { type: Number, required: true },
+  name: { type: String },
 });
 
 

@@ -9,23 +9,16 @@ const app = express();
 app.use(express.static('dist'));
 
 // Set up mongoose connection
-const devDbUrl = 'mongodb://localhost/sprint_planning';
+const devDbUrl = 'mongodb://localhost:27017/sprint_planning';
 const mongoDB = process.env.MONGODB_URI || devDbUrl;
-mongoose.connect(mongoDB, {})
-  .then((err) => {
-    console.error.bind(console, 'MongoDB connection error:', err);
-  });
+mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.use('/sprints', sprintRoutes);
-
-app.get('/sprints', (req, res) => {
-  console.log('getting stuff')
-  res.send({ username: "Good to go!" });
-})
+app.use('/api/sprints', sprintRoutes);
 
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
