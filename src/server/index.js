@@ -11,7 +11,8 @@ app.use(express.static('dist'));
 // Set up mongoose connection
 const devDbUrl = 'mongodb://localhost:27017/sprint_planning';
 const mongoDB = process.env.MONGODB_URI || devDbUrl;
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.set('useFindAndModify', false);
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
