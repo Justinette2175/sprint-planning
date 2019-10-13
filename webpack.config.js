@@ -4,7 +4,8 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");const outputDirectory
   entry: ['babel-polyfill', './src/client/index.js'],
   output: {
     path: path.join(__dirname, outputDirectory),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -28,6 +29,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");const outputDirectory
   devServer: {
     port: 3000,
     open: true,
+    historyApiFallback: true,
     proxy: {
       "/api": "http://localhost:8080"
     }

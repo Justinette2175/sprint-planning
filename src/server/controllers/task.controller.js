@@ -1,4 +1,4 @@
-import Task from '../models/Task.model';
+import Task from '../models/task.model';
 
 
 //Simple version, without validation or sanitation

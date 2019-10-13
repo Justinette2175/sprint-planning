@@ -5,11 +5,13 @@ import {
   Container,
 } from '@material-ui/core';
 
-
+import ProjectsSelector from '../components/ProjectsSelector';
 
 function SprintPage(props) {
   return (
     <Container maxWidth="lg">
+      A sprint page!
+      <ProjectsSelector />
     </Container>
   );
 }

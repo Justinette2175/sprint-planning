@@ -9,6 +9,6 @@ const sprintController = require('../controllers/sprint.controller.js');
 router.get('/', sprintController.getSprints);
 router.get('/:id', sprintController.getSprintById);
 router.put('/:id', sprintController.updateSprintById);
-router.post('/create', sprintController.createSprint);
+router.post('/', sprintController.createSprint);
 
 module.exports = router;

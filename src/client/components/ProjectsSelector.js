@@ -6,13 +6,13 @@ import {
 } from '@material-ui/core';
 
 
-function ProjectsSelector(props) {
+function ProjectsSelector() {
 
   const [projects, updateProjects] = useState([]);
   const [selectedProjects, updateSelectedProjects] = useState([]);
 
   useEffect(() => {
-    fetch('/api/sprints')
+    fetch('/api/projects')
       .then((data) => data.json())
       .then((data) => updateProjects(data));
   }, []);

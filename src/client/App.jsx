@@ -7,8 +7,9 @@ import MomentUtils from '@date-io/moment';
 
 import SprintsPage from './pages/SprintsPage';
 import SprintPage from './pages/SprintPage';
+import NewSprintPage from './pages/NewSprintPage';
 
-function App() {
+function App(props) {
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <div className="App">
@@ -17,6 +18,11 @@ function App() {
             exact
             path="/"
             render={() => <SprintsPage />}
+          />
+          <Route
+            exact
+            path="/sprints/new"
+            render={() => <NewSprintPage />}
           />
           <Route
             path="/sprints/:sprintId"

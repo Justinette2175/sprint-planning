@@ -16,10 +16,7 @@ function SprintsPage(props) {
   useEffect(() => {
     fetch('/api/sprints')
       .then((data) => data.json())
-      .then((data) => {
-        console.log('data', data)
-        updateSprints(data)
-      });
+      .then((data) => updateSprints(data));
   }, []);
 
   return (

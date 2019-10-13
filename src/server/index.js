@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
 import sprintRoutes from './routes/sprint.route';
+import projectRoutes from './routes/project.route';
+import taskRoutes from './routes/task.route';
+import memberRoutes from './routes/member.route';
 import dataUpdateService from './services/dataUpdate.service';
 
 const app = express();
@@ -30,6 +33,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/sprints', sprintRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/member', memberRoutes);
 
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
 

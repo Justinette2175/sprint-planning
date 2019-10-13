@@ -19,9 +19,15 @@ exports.getSprintById = (req, res) => {
 exports.createSprint = (req, res) => {
   const newSprint = new Sprint({
     name: req.body.name,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
   });
-
-  newSprint.save();
+  newSprint.save()
+    .then((result) => {
+      res.status(200).send(result);
+    }, (err) => {
+      console.log('error||sprint.controller||createSprint', err);
+    });
 };
 
 exports.updateSprintById = (req, res) => {
