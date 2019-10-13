@@ -2,7 +2,7 @@ import Sprint from '../models/sprint.model';
 
 //Simple version, without validation or sanitation
 exports.getSprints = (req, res) => {
-  Sprint.find({ }, '_id', (err, sprints) => {
+  Sprint.find({ }, (err, sprints) => {
     res.send(sprints);
   });
 };
