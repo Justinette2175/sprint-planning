@@ -3,8 +3,12 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
 import sprintRoutes from './routes/sprint.route';
+import dataUpdateService from './services/dataUpdate.service';
 
 const app = express();
+
+// Refresh data every 30 seconds
+const REFRESH_DATA_INTERVAL = 30000;
 
 app.use(express.static('dist'));
 
@@ -17,9 +21,15 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+dataUpdateService.refreshAllData();
+
+// Refresh data from Gitlab at an interval
+setTimeout(() => dataUpdateService.refreshAllData(), REFRESH_DATA_INTERVAL);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/sprints', sprintRoutes);
 
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
+

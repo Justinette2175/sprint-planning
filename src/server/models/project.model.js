@@ -2,9 +2,9 @@ import mongoose, { Schema } from 'mongoose';
 
 const ProjectSchema = new Schema({
   name: { type: String },
-  gitlabProjectId: { type: String },
+  gitlabId: { type: String },
 });
 
 
 // Export the model
-module.exports = mongoose.model('Sprint', ProjectSchema);
+module.exports = mongoose.model('Project', ProjectSchema);

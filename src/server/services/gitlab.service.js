@@ -1,5 +1,8 @@
+import fetch from 'node-fetch';
+
 import { AUTH_TOKEN } from '../credentials.json';
 import { GROUP_NAME } from '../config.json';
+
 const ROOT_URL = 'https://gitlab.com/api/v4';
 
 exports.getMilestones = () => fetch(`${ROOT_URL}/groups/${GROUP_NAME}/milestones?private_token=${AUTH_TOKEN}`)
@@ -44,6 +47,12 @@ exports.getIssuesForProject = (projectId) => fetch(`${ROOT_URL}/projects/${proje
     })));
   });
 
+exports.getAllIssues = () => fetch(`${ROOT_URL}/groups/${GROUP_NAME}/issues?private_token=${AUTH_TOKEN}`)
+  .then((data) => data.json())
+  .then((results) => {
+    return Promise.resolve(results);
+  });
+
 exports.getProject = (projectId) => fetch(`${ROOT_URL}/projects/${projectId}?private_token=${AUTH_TOKEN}`)
   .then((results) => results.json())
   .then((data) => {
@@ -66,7 +75,7 @@ exports.getIssue = (iidInProject) => {
         dueDate: due_date,
         mergeRequestsCount: merge_requests_count,
         description,
-        id: id,
+        id,
         iidInProject,
       });
     });
