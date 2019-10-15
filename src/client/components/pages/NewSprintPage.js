@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import {
   Container,
   MenuItem,
@@ -12,7 +13,7 @@ import {
 } from '@material-ui/pickers';
 
 
-function NewSprintPage(props) {
+function NewSprintPage({ history }) {
   const [newSprint, updateNewSprint] = useState({
     startDate: null,
     endDate: null,
@@ -33,7 +34,7 @@ function NewSprintPage(props) {
       .then((data) => { 
         if (data._id) {
           updateNewSprint({});
-          props.history.push(`/sprints/${data._id}`);
+          history.push(`/sprints/${data._id}`);
         }
       });
   }
@@ -102,4 +103,4 @@ function NewSprintPage(props) {
   );
 }
 
-export default NewSprintPage;
+export default withRouter(NewSprintPage);

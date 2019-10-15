@@ -5,6 +5,7 @@ const SprintSchema = new Schema({
   startDate: { type: String },
   endDate: { type: String },
   milestoneId: { type: String },
+  projects: { type: Array },
 });
 
 

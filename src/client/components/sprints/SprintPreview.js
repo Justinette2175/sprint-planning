@@ -7,16 +7,16 @@ import {
   Typography,
 } from '@material-ui/core';
 
-function Sprint(props) {
+function Sprint({ title, onClick}) {
   return (
     <Card>
-      <CardActionArea onClick={props.onClick}>
+      <CardActionArea onClick={onClick}>
         <CardContent>
-          <Typography variant="body1" component="h2">{props.title}</Typography>
+          <Typography variant="body1" component="h2">{title}</Typography>
         </CardContent>
       </CardActionArea>
     </Card>
-  )
+  );
 }
 
 export default Sprint;

@@ -5,9 +5,9 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import MomentUtils from '@date-io/moment';
 
-import SprintsPage from './pages/SprintsPage';
-import SprintPage from './pages/SprintPage';
-import NewSprintPage from './pages/NewSprintPage';
+import SprintsPage from './components/pages/SprintsPage';
+import SprintPage from './components/pages/SprintPage';
+import NewSprintPage from './components/pages/NewSprintPage';
 
 function App(props) {
   return (

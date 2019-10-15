@@ -6,10 +6,9 @@ import {
 } from '@material-ui/core';
 
 
-function ProjectsSelector() {
+function ProjectsSelector({ onClickSelectedProject, onClickUnselectedProject, projectsInSprint }) {
 
   const [projects, updateProjects] = useState([]);
-  const [selectedProjects, updateSelectedProjects] = useState([]);
 
   useEffect(() => {
     fetch('/api/projects')
@@ -17,17 +16,16 @@ function ProjectsSelector() {
       .then((data) => updateProjects(data));
   }, []);
 
-
-  function handleProjectClick(id) {
-    const indexOfIdInProjects = selectedProjects.indexOf(id);
-    if (indexOfIdInProjects > -1) {
-      const newProjects = [...selectedProjects];
-      newProjects.splice(indexOfIdInProjects, 1);
-      updateSelectedProjects(newProjects);
-    } else {
-      updateSelectedProjects([...selectedProjects, id]);
+  const handleProjectClick = (id) => {
+    if (Array.isArray(projectsInSprint)) {
+      const indexOfIdInProjects = projectsInSprint.indexOf(id);
+      if (indexOfIdInProjects > -1) {
+        onClickSelectedProject(id);
+      } else {
+        onClickUnselectedProject(id);
+      }
     }
-  }
+  };
 
   return (
     <Box>
@@ -37,7 +35,7 @@ function ProjectsSelector() {
             key={item._id}
             label={item.name}
             onClick={() => handleProjectClick(item._id)}
-            color="primary"
+            color={projectsInSprint.indexOf(item._id) > -1 ? 'primary' : 'default'}
           />
         );
       })}

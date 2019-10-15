@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {
   Container,
   Button,
@@ -7,10 +7,10 @@ import {
   Box,
 } from '@material-ui/core';
 
-import SprintPreview from '../components/SprintPreview';
+import SprintPreview from '../sprints/SprintPreview';
 
 
-function SprintsPage(props) {
+function SprintsPage() {
   const [sprints, updateSprints] = useState([]);
 
   useEffect(() => {
@@ -43,9 +43,9 @@ function SprintsPage(props) {
           </Typography>
         </Box>
       )}
-      <Link to={'sprints/new'}><Button variant="contained" color="primary">Create a sprint</Button></Link>
+      <Link to="sprints/new"><Button variant="contained" color="primary">Create a sprint</Button></Link>
     </Container>
-  )
+  );
 }
 
-export default SprintsPage;
+export default withRouter(SprintsPage);
