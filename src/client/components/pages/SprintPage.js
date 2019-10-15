@@ -29,27 +29,19 @@ function SprintPage(props) {
   }, []);
 
   const addProjectToSprint = (projectId) => {
-    console.log('trying to add');
     return fetch(`/api/sprints/${sprintId}/projects/${projectId}`, {
       method: 'POST',
     })
       .then((data) => data.json())
-      .then((data) => {
-        console.log('done adding', data);
-        setSprintInfo(data);
-      });
+      .then((data) => setSprintInfo(data));
   };
 
   const removeProjectFromSprint = (projectId) => {
-    console.log('trying to remove')
     return fetch(`/api/sprints/${sprintId}/projects/${projectId}`, {
       method: 'DELETE',
     })
       .then((data) => data.json())
-      .then((data) => {
-        console.log('done removing', data);
-        setSprintInfo(data)
-      });
+      .then((data) => setSprintInfo(data));
   };
 
   return (
