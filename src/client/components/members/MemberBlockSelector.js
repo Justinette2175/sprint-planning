@@ -17,6 +17,7 @@ function MemberBlockSelector({ sprintId, members }) {
     <Box>
       {members && members.map((member) => (
         <MemberWithBlock
+          key={member._id}
           memberId={member._id}
           name={member.name}
           avatarUrl={member.avatar}

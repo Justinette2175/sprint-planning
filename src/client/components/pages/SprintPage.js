@@ -10,6 +10,7 @@ import {
 
 import ProjectsSelector from '../projects/ProjectsSelector';
 import MemberBlockSelector from '../members/MemberBlockSelector';
+import TaskAssigner from '../dndAssignation/TaskAssigner';
 
 import { formatTime } from '../../utils/utils';
 
@@ -72,6 +73,11 @@ function SprintPage(props) {
       <MemberBlockSelector
         sprintId={sprintId}
         members={membersInfo}
+      />
+      <TaskAssigner
+        members={membersInfo}
+        sprintId={sprintId}
+        projects={sprintInfo.projects}
       />
     </Container>
   );

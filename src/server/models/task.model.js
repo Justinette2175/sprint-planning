@@ -2,6 +2,9 @@ import mongoose, { Schema } from 'mongoose';
 
 const AssigneeSchema = new Schema({ memberId: { type: Schema.Types.ObjectId } }, { _id: false });
 
+//TODO - store project name in addition to ID for better display;
+//TODO - store task labels
+//TODO - store avatar URLS?
 const TaskSchema = new Schema({
   name: { type: String },
   sprintId: { type: Schema.Types.ObjectId },
