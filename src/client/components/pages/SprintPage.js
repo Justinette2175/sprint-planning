@@ -9,6 +9,8 @@ import {
 } from '@material-ui/core';
 
 import ProjectsSelector from '../projects/ProjectsSelector';
+import MemberBlockSelector from '../members/MemberBlockSelector';
+
 import { formatTime } from '../../utils/utils';
 
 function SprintPage(props) {
@@ -21,11 +23,23 @@ function SprintPage(props) {
     _id: sprintId,
     projects: [],
   });
+  const [membersInfo, setMembersInfo] = useState([]);
 
+  const getSprintInfo = async () => fetch(`/api/sprints/${sprintId}`)
+    .then((data) => data.json())
+    .then((data) => {
+      setSprintInfo(data);
+    });
+  
+  const getMembersInfo = async () => fetch('/api/members/')
+    .then((data) => data.json())
+    .then((data) => {
+      setMembersInfo(data);
+    });
+  
   useEffect(() => {
-    fetch(`/api/sprints/${sprintId}`)
-      .then((data) => data.json())
-      .then((data) => setSprintInfo(data));
+    getMembersInfo();
+    getSprintInfo();
   }, []);
 
   const addProjectToSprint = (projectId) => {
@@ -54,6 +68,10 @@ function SprintPage(props) {
         onClickSelectedProject={(projectId) => removeProjectFromSprint(projectId)}
         onClickUnselectedProject={(projectId) => addProjectToSprint(projectId)}
         projectsInSprint={sprintInfo.projects}
+      />
+      <MemberBlockSelector
+        sprintId={sprintId}
+        members={membersInfo}
       />
     </Container>
   );

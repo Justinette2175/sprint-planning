@@ -55,7 +55,6 @@ const ACTION_TYPES = {
 };
 
 const modifySprintProjects = async (sprint, type, projectId) => {
-  console.log('the type of the action is', type);
   const sprintProjects = [].concat(sprint.projects);
   const indexOfProjectInSprintProjects = sprintProjects.indexOf(projectId);
   if (type === ACTION_TYPES.DELETE && indexOfProjectInSprintProjects > -1) {
@@ -69,7 +68,7 @@ const modifySprintProjects = async (sprint, type, projectId) => {
   }
 };
 
-exports.addSprintToProject = (req, res) => {
+exports.addProjectToSprint = (req, res) => {
   const { projectId, id } = req.params;
   return Sprint.findById(id, (err, sprint) => {
     if (err) { return; }
@@ -80,7 +79,7 @@ exports.addSprintToProject = (req, res) => {
   });
 };
 
-exports.deleteSprintFromProject = (req, res) => {
+exports.deleteProjectFromSprint = (req, res) => {
   const { projectId, id } = req.params;
   return Sprint.findById(id, (err, sprint) => {
     if (err) { return; }

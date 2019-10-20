@@ -9,8 +9,8 @@ const sprintController = require('../controllers/sprint.controller.js');
 router.get('/', sprintController.getSprints);
 router.get('/:id', sprintController.getSprintById);
 router.put('/:id', sprintController.updateSprintById);
-router.post('/:id/projects/:projectId', sprintController.addSprintToProject);
-router.delete('/:id/projects/:projectId', sprintController.deleteSprintFromProject);
+router.post('/:id/projects/:projectId', sprintController.addProjectToSprint);
+router.delete('/:id/projects/:projectId', sprintController.deleteProjectFromSprint);
 router.post('/', sprintController.createSprint);
 
 module.exports = router;
