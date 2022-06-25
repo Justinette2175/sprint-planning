@@ -29,7 +29,7 @@
     "express": "^4.16.3",
     "moment": "^2.24.0",
     "mongoose": "^5.7.3",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "query-string": "^6.8.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
